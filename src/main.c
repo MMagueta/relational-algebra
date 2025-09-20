@@ -1,3 +1,11 @@
+/**
+ * @file main.c
+ * @brief Example usage and entry point for the Relational Algebra Engine.
+ *
+ * Demonstrates creation and manipulation of relations, tuples, and attributes
+ * according to strict relational algebra principles.
+ *
+ */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,6 +14,21 @@
 #include "relation.h"
 #include "tuple.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "attribute.h"
+#include "relation.h"
+#include "tuple.h"
+
+/**
+ * @brief Entry point for the relational algebra engine demo.
+ *
+ * Demonstrates creation of relations, tuples, and attributes, and prints results.
+ *
+ * @return int Exit status code (0 for success).
+ */
 int main(void) {
   Relation *employees = relation_create("Employees");
 

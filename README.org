@@ -3,7 +3,6 @@
 
 * About
 
-#+ATTR_HTML: :align center
 [[file:./docs/images/elements.png]]
 
 The *Relational Algebra Engine* implements relational algebra in its
@@ -22,6 +21,33 @@ classical definition of relational algebra. It is a platform for
 exploring the consequences of relational theory in a low-level
 programming context, providing both a tool for experimentation and a
 concrete realization of the abstract model.
+
+* Project Structure
+
+- =src/= — C source files implementing the engine
+- =include/= — Header files for public APIs
+- =docs/= — Documentation and images
+- =Makefile= — Build and formatting commands
+- =Doxyfile= — Doxygen configuration for code documentation
+
+* Documentation
+
+[[https://MMagueta.github.io/relational-algebra/][View the latest API docs]]
+
+To build the documentation locally:
+
+#+BEGIN_SRC shell
+doxygen Doxyfile
+
+* Contributing
+
+Pull requests and issues are welcome! Please format code with clang-format before submitting.
+
+* License
+
+This project is licensed under the APACHE 2.0 License. See the LICENSE file for details.
+
+The HTML output will be in =docs/doxygen/html/=. GitHub Actions will auto-deploy docs from the =docs/doxygen/html= directory to the =gh-pages= branch.
 
 * Usage
 
