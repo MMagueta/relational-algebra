@@ -1,7 +1,13 @@
 #+TITLE: Relational Algebra Engine
+#+OPTIONS: toc:nil
 
 * About
 
+#+STYLE: <style type="text/css">
+#+STYLE:<!--/*--><![CDATA[/*><!--*/
+#+STYLE: div.figure { float:left; }
+#+STYLE: /*]]>*/-->
+#+STYLE: </style>
 [[file:./docs/images/elements.png]]
 
 The **Relational Algebra Engine** implements relational algebra in its
