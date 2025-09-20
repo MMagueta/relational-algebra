@@ -1,0 +1,12 @@
+# Doxyfile 1.9.1
+# This is a minimal Doxygen configuration file for C projects
+
+PROJECT_NAME           = "Relational Algebra Engine"
+OUTPUT_DIRECTORY       = docs/doxygen
+INPUT                  = src include
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = NO
+GENERATE_LATEX         = NO
+GENERATE_HTML          = YES
+EXTRACT_ALL            = YES
+QUIET                  = YES
