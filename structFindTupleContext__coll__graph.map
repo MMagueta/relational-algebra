@@ -1,0 +1,8 @@
+<map id="FindTupleContext" name="FindTupleContext">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,196,140,221"/>
+<area shape="rect" id="Node000002" href="$structSet.html" title=" " alt="" coords="51,93,94,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,133,75,196,70,196,70,133"/>
+<area shape="rect" id="Node000003" href="$structSetNode.html" title=" " alt="" coords="34,5,111,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="75,45,75,93,70,93,70,45"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="126,9,134,12,138,18,130,26,112,29,112,23,127,22,133,18,131,16,125,14"/>
+</map>

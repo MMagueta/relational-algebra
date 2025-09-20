@@ -1,0 +1,7 @@
+<map id="include/relation.h" name="include/relation.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="44,5,179,31"/>
+<area shape="rect" id="Node000002" href="$main_8c.html" title="Example usage and entry point for the Relational Algebra Engine." alt="" coords="5,79,95,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,43,62,80,58,77,90,40"/>
+<area shape="rect" id="Node000003" href="$relation_8c.html" title="Relation implementation for the Relational Algebra Engine." alt="" coords="119,79,226,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,40,165,77,161,80,128,43"/>
+</map>
