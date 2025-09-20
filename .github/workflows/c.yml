@@ -2,9 +2,9 @@ name: C CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "master", "ci" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "ci" ]
 
 jobs:
   build:
@@ -13,5 +13,7 @@ jobs:
     steps:
     - name: Install Make
       run: sudo apt-get install -y build-essential
-    - name: Compile
-      run: make
+    - name: Build
+      run: |
+        cd algebra-engine
+        make
