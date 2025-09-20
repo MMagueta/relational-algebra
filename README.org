@@ -2,31 +2,12 @@
 #+OPTIONS: toc:nil
 
 * About
-
-#+STYLE: <style type="text/css">
-#+STYLE:<!--/*--><![CDATA[/*><!--*/
-#+STYLE: div.figure { float:left; }
-#+STYLE: /*]]>*/-->
-#+STYLE: </style>
-[[file:./docs/images/elements.png]]
-
-The **Relational Algebra Engine** implements relational algebra in its
-strict, theoretical form, adhering rigorously to the principles of
-relational theory as articulated by E. F. Codd.
-
-A **relation** is modeled as a set of tuples, each tuple being a set
-of attributes. Each attribute is a pairing of a name with a value
-drawn from a domain. All operations are defined on **entire relations
-as sets**, with no recourse to the compromises typical of SQL or other
-practical implementations.
-
-The engine is intended as a **study in correctness**: each operation,
-from projection to join, is executed in a manner consistent with the
-classical definition of relational algebra. It is a platform for
-exploring the consequences of relational theory in a low-level
-programming context, providing both a tool for experimentation and a
-concrete realization of the abstract model.
-
+#+BEGIN_HTML
+<div style="display: flex; gap: 20px;">
+  <img src="./docs/images/elements.png" style="max-width:200px;">
+  <p>The <strong>Relational Algebra Engine</strong> implements relational algebra...</p>
+</div>
+#+END_HTML
 * Usage
 
 Compile and run the engine:
