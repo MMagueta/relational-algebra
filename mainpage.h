@@ -1,8 +1,6 @@
 /**
  * @mainpage Relational Algebra Engine
  *
- * [[file:./docs/images/elements.png]]
- *
  * The <b>Relational Algebra Engine</b> implements relational algebra in its
  * strict, theoretical form, adhering rigorously to the principles of
  * relational theory as articulated by E. F. Codd.
@@ -26,10 +24,6 @@
  * - <code>docs/</code> — Documentation and images
  * - <code>Makefile</code> — Build and formatting commands
  * - <code>Doxyfile</code> — Doxygen configuration for code documentation
- *
- * @section documentation Documentation
- *
- * <a href="https://MMagueta.github.io/relational-algebra/">View the latest API docs</a>
  *
  * To build the documentation locally:
  * @code{.sh}
