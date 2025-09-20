@@ -3,18 +3,12 @@
 
 #include <stddef.h>
 
-typedef enum {
-    ATTR_INT,
-    ATTR_DOUBLE,
-    ATTR_STRING,
-    ATTR_SET,
-    ATTR_UNKNOWN
-} AttributeType;
+typedef enum { ATTR_INT, ATTR_DOUBLE, ATTR_STRING, ATTR_SET, ATTR_UNKNOWN } AttributeType;
 
 typedef struct {
-    char *name;
-    AttributeType type;
-    void *value;
+  char *name;
+  AttributeType type;
+  void *value;
 } Attribute;
 
 Attribute *attribute_create(const char *name, AttributeType type, void *value);

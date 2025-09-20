@@ -23,6 +23,6 @@ size_t set_size(const Set *set);
 
 /* Iteration */
 typedef void (*SetIterFn)(void *elem, void *userdata);
-void set_foreach(Set *set, SetIterFn fn, void *userdata);
+void set_foreach(const Set *set, SetIterFn fn, void *userdata);
 
 #endif // SET_H
