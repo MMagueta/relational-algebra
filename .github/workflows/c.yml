@@ -10,7 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
-    - name: make
+    - name: Install Make
+      run: apt-get install -y build-essential
+    - name: Compile
       run: make

@@ -3,7 +3,7 @@
 
 PROJECT_NAME           = "Relational Algebra Engine"
 OUTPUT_DIRECTORY       = docs/doxygen
-INPUT                  = src include
+INPUT                  = src include mainpage.h
 FILE_PATTERNS          = *.c *.h
 RECURSIVE              = NO
 GENERATE_LATEX         = NO
