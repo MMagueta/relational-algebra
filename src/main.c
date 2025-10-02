@@ -13,14 +13,6 @@
 #include "attribute.h"
 #include "relation.h"
 #include "tuple.h"
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-#include "attribute.h"
-#include "relation.h"
-#include "tuple.h"
 #include "infinite_relation.h"
 #include "primitive_relations.h"
 
