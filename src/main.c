@@ -21,15 +21,10 @@
 #include "attribute.h"
 #include "relation.h"
 #include "tuple.h"
+#include "infinite_relation.h"
+#include "primitive_relations.h"
 
-/**
- * @brief Entry point for the relational algebra engine demo.
- *
- * Demonstrates creation of relations, tuples, and attributes, and prints results.
- *
- * @return int Exit status code (0 for success).
- */
-int main(void) {
+int relational_example(void) {
   Relation *employees = relation_create("Employees");
 
   Tuple *t1 = tuple_create();
@@ -62,5 +57,41 @@ int main(void) {
     printf("\nTuple not found.\n");
   }
   relation_destroy(employees);
+  return 0;
+}
+
+void successor_relation_example() {
+  InfiniteRelation *succ = infinite_relation_create("SUCCESSOR", (TupleGeneratorFn)successor_generator, NULL);
+    printf("First 3 tuples of R = {(x, x+1) | x in N}:\n\n");
+    infinite_relation_print_prefix(succ, 3);
+    infinite_relation_destroy(succ);
+}
+
+void natural_relation_example() {
+    InfiniteRelation *nat = infinite_relation_create("NATURAL", (TupleGeneratorFn)natural_generator, NULL);
+    printf("First 3 tuples of R = N:\n\n");
+    infinite_relation_print_prefix(nat, 3);
+    infinite_relation_destroy(nat);
+}
+
+void integer_relation_example() {
+    InfiniteRelation *inte = infinite_relation_create("INTEGER", (TupleGeneratorFn)integer_generator, NULL);
+    printf("First 3 tuples of R = Z:\n\n");
+    infinite_relation_print_prefix(inte, 3);
+    infinite_relation_destroy(inte);
+}
+
+/**
+ * @brief Entry point for the relational algebra engine demo.
+ *
+ * Demonstrates creation of relations, tuples, and attributes, and prints results.
+ *
+ * @return int Exit status code (0 for success).
+ */
+int main(void) {
+  relational_example();
+  successor_relation_example();
+  natural_relation_example();
+  integer_relation_example();
   return 0;
 }

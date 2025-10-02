@@ -62,7 +62,7 @@ void relation_destroy(Relation *r) {
   free(r);
 }
 
-/**
+/*
  * @brief Add a tuple to a relation.
  *
  * @param r Pointer to the Relation.
