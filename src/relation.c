@@ -12,7 +12,7 @@
 
 #include "relation.h"
 
-/* Compare tuples by their attributes — for simplicity, we’ll compare by pointer equality here.
+/* Compare tuples by their attributes — for simplicity, we'll compare by pointer equality here.
    Later we could define a real "tuple equal" check. */
 /**
  * @brief Compare two tuples by pointer equality.
@@ -46,6 +46,22 @@ Relation *relation_create(const char *name) {
     return NULL;
   r->name = strdup(name);
   r->tuples = set_create(tuple_cmp, tuple_free);
+  r->cardinality = cardinality_finite(0);
+  return r;
+}
+
+/**
+ * @brief Create a new Relation with specified cardinality.
+ *
+ * @param name Name of the relation (copied).
+ * @param card Cardinality of the relation.
+ * @return Pointer to the new Relation, or NULL on failure.
+ */
+Relation *relation_create_with_cardinality(const char *name, Cardinality card) {
+  Relation *r = relation_create(name);
+  if (r) {
+    r->cardinality = card;
+  }
   return r;
 }
 
@@ -69,7 +85,25 @@ void relation_destroy(Relation *r) {
  * @param t Pointer to the Tuple to add.
  * @return 1 if added, 0 if already present, -1 on error.
  */
-int relation_add_tuple(Relation *r, Tuple *t) { return set_add(r->tuples, t); }
+int relation_add_tuple(Relation *r, Tuple *t) {
+  int result = set_add(r->tuples, t);
+  if (result == 1 && cardinality_is_finite(r->cardinality)) {
+    // Update finite cardinality
+    r->cardinality.finite_count = set_size(r->tuples);
+  }
+  return result;
+}
+
+/**
+ * @brief Update cardinality based on current tuple count.
+ *
+ * @param r Pointer to the Relation.
+ */
+void relation_update_cardinality(Relation *r) {
+  if (cardinality_is_finite(r->cardinality)) {
+    r->cardinality.finite_count = set_size(r->tuples);
+  }
+}
 
 /**
  * @brief Print a tuple (used as callback for set_foreach).
@@ -91,6 +125,19 @@ static void print_tuple(void *element, void *userdata) {
  */
 void relation_print(const Relation *r) {
   printf("Relation %s {\n", r->name);
+  set_foreach(r->tuples, print_tuple, NULL);
+  printf("}\n");
+}
+
+/**
+ * @brief Print a Relation with its cardinality.
+ *
+ * @param r Pointer to the Relation to print.
+ */
+void relation_print_with_cardinality(const Relation *r) {
+  printf("Relation %s (", r->name);
+  cardinality_print(r->cardinality);
+  printf(") {\n");
   set_foreach(r->tuples, print_tuple, NULL);
   printf("}\n");
 }
