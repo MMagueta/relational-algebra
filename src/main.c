@@ -92,7 +92,23 @@ void successor_relation_example() {
       "SUCCESSOR", (TupleGeneratorFn)successor_generator, NULL,
       cardinality_infinite(CARD_ALEPH_0));
   printf("First 3 tuples of R = {(x, x+1) | x in N}:\n\n");
-  infinite_relation_print_prefix_with_cardinality(succ, 3);
+  
+  printf("Relation %s (", succ->name);
+  cardinality_print(succ->cardinality);
+  printf(") {\n");
+  
+  InfiniteRelationIterator *iter = infinite_relation_iterator_create(succ);
+  for (size_t i = 0; i < 3; i++) {
+    Tuple *t = infinite_relation_iterator_next(iter);
+    if (t) {
+      printf(" ");
+      tuple_print(t);
+      tuple_destroy(t);
+    }
+  }
+  printf("}\n");
+  
+  infinite_relation_iterator_destroy(iter);
   infinite_relation_destroy(succ);
 }
 
@@ -101,7 +117,23 @@ void natural_relation_example() {
       "NATURAL", (TupleGeneratorFn)natural_generator, NULL,
       cardinality_infinite(CARD_ALEPH_0));
   printf("First 3 tuples of N:\n\n");
-  infinite_relation_print_prefix_with_cardinality(nat, 3);
+  
+  printf("Relation %s (", nat->name);
+  cardinality_print(nat->cardinality);
+  printf(") {\n");
+  
+  InfiniteRelationIterator *iter = infinite_relation_iterator_create(nat);
+  for (size_t i = 0; i < 3; i++) {
+    Tuple *t = infinite_relation_iterator_next(iter);
+    if (t) {
+      printf(" ");
+      tuple_print(t);
+      tuple_destroy(t);
+    }
+  }
+  printf("}\n");
+  
+  infinite_relation_iterator_destroy(iter);
   infinite_relation_destroy(nat);
 }
 
@@ -110,7 +142,23 @@ void integer_relation_example() {
       "INTEGER", (TupleGeneratorFn)integer_generator, NULL,
       cardinality_infinite(CARD_ALEPH_0));
   printf("First 3 tuples of Z:\n\n");
-  infinite_relation_print_prefix_with_cardinality(inte, 3);
+  
+  printf("Relation %s (", inte->name);
+  cardinality_print(inte->cardinality);
+  printf(") {\n");
+  
+  InfiniteRelationIterator *iter = infinite_relation_iterator_create(inte);
+  for (size_t i = 0; i < 3; i++) {
+    Tuple *t = infinite_relation_iterator_next(iter);
+    if (t) {
+      printf(" ");
+      tuple_print(t);
+      tuple_destroy(t);
+    }
+  }
+  printf("}\n");
+  
+  infinite_relation_iterator_destroy(iter);
   infinite_relation_destroy(inte);
 }
 
@@ -174,8 +222,41 @@ void infinite_join_example_equality() {
 
   printf("First 5 tuples of N ⋈ N where n₁ = n₂:\n");
   printf("Expected: (0,0), (1,1), (2,2), (3,3), (4,4)\n\n");
-  infinite_relation_print_prefix_with_cardinality(joined, 5);
+  
+  printf("Relation %s (", joined->name);
+  cardinality_print(joined->cardinality);
+  printf(") {\n");
+  
+  InfiniteRelationIterator *iter = infinite_relation_iterator_create(joined);
+  for (size_t i = 0; i < 5; i++) {
+    Tuple *t = infinite_relation_iterator_next(iter);
+    if (t) {
+      printf(" ");
+      tuple_print(t);
+      tuple_destroy(t);
+    }
+  }
+  printf("}\n");
+  
+  infinite_relation_iterator_destroy(iter);
 
+  Tuple *target = tuple_create();
+  int *left_val = malloc(sizeof(int));
+  *left_val = 3;
+  int *right_val = malloc(sizeof(int));
+  *right_val = 3;
+  tuple_add_attribute(target, attribute_create("left_n", ATTR_INT, left_val));
+  tuple_add_attribute(target, attribute_create("right_n", ATTR_INT, right_val));
+  Tuple *found = infinite_relation_find_tuple(joined, target);
+  if (found) {
+    printf("Found tuple:\n");
+    tuple_print(found);
+    tuple_destroy(found);
+  } else {
+    printf("💣\n");
+  }
+  tuple_destroy(target);
+  
   infinite_relation_destroy(nat1);
   infinite_relation_destroy(nat2);
   infinite_relation_destroy(joined);
@@ -201,7 +282,23 @@ void infinite_join_example_less_than() {
 
   printf("First 10 tuples of N ⋈ N where n₁ < n₂:\n");
   printf("Expected: (0,1), (0,2), (1,2), (0,3), (1,3), (2,3), ...\n\n");
-  infinite_relation_print_prefix_with_cardinality(joined, 10);
+  
+  printf("Relation %s (", joined->name);
+  cardinality_print(joined->cardinality);
+  printf(") {\n");
+  
+  InfiniteRelationIterator *iter = infinite_relation_iterator_create(joined);
+  for (size_t i = 0; i < 10; i++) {
+    Tuple *t = infinite_relation_iterator_next(iter);
+    if (t) {
+      printf(" ");
+      tuple_print(t);
+      tuple_destroy(t);
+    }
+  }
+  printf("}\n");
+  
+  infinite_relation_iterator_destroy(iter);
 
   printf("\nNote: The result is infinite because for every natural number,\n");
   printf("there are infinitely many greater natural numbers.\n");
@@ -339,7 +436,23 @@ void mixed_join_example() {
 
   printf("\nFirst 10 tuples of the join result:\n");
   printf("Expected: (1,2), (1,3), (2,3), (1,4), (2,4), (3,4), ...\n\n");
-  infinite_relation_print_prefix_with_cardinality(joined, 10);
+  
+  printf("Relation %s (", joined->name);
+  cardinality_print(joined->cardinality);
+  printf(") {\n");
+  
+  InfiniteRelationIterator *iter = infinite_relation_iterator_create(joined);
+  for (size_t i = 0; i < 10; i++) {
+    Tuple *t = infinite_relation_iterator_next(iter);
+    if (t) {
+      printf(" ");
+      tuple_print(t);
+      tuple_destroy(t);
+    }
+  }
+  printf("}\n");
+  
+  infinite_relation_iterator_destroy(iter);
 
   printf("\nNote: This produces infinite results because each of the 3 finite elements\n");
   printf("joins with infinitely many naturals greater than it.\n");

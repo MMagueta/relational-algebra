@@ -20,6 +20,12 @@ typedef struct {
     Cardinality cardinality;
 } InfiniteRelation;
 
+typedef struct {
+    InfiniteRelation *relation;
+    size_t current_index;
+    int exhausted;
+} InfiniteRelationIterator;
+
 /**
  * Create an infinite relation defined by a generator function.
  */
@@ -54,5 +60,18 @@ void infinite_relation_print_prefix(InfiniteRelation *r, size_t count);
  * Print first `count` tuples with cardinality info.
  */
 void infinite_relation_print_prefix_with_cardinality(InfiniteRelation *r, size_t count);
+
+/**
+ * Find a tuple in the infinite relation that matches the target.
+ * Returns a newly allocated Tuple* if found, NULL otherwise.
+ * Note: Searches up to a limit to avoid infinite loops.
+ */
+Tuple *infinite_relation_find_tuple(InfiniteRelation *r, Tuple *target);
+
+InfiniteRelationIterator *infinite_relation_iterator_create(InfiniteRelation *r);
+
+Tuple *infinite_relation_iterator_next(InfiniteRelationIterator *iter);
+
+void infinite_relation_iterator_destroy(InfiniteRelationIterator *iter);
 
 #endif // INFINITE_RELATION_H
