@@ -3,7 +3,7 @@
 
 #include <stddef.h>
 
-typedef enum { ATTR_INT, ATTR_DOUBLE, ATTR_STRING, ATTR_SET, ATTR_UNKNOWN } AttributeType;
+typedef enum { ATTR_INT, ATTR_RATIONAL, ATTR_STRING, ATTR_SET, ATTR_UNKNOWN } AttributeType;
 
 typedef struct {
   char *name;

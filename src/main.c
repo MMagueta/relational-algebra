@@ -17,6 +17,7 @@
 #include "primitive_relations.h"
 #include "relation.h"
 #include "tuple.h"
+#include "arithmetic_relations.h"
 
 /**
  * Join predicate: equality on "n" attribute.
@@ -61,7 +62,7 @@ int relational_example(void) {
   tuple_add_attribute(t1, attribute_create("name", ATTR_STRING, strdup("Alice")));
   double *salary1 = malloc(sizeof(double));
   *salary1 = 50000.0;
-  tuple_add_attribute(t1, attribute_create("salary", ATTR_DOUBLE, salary1));
+  tuple_add_attribute(t1, attribute_create("salary", ATTR_INT, salary1));
   relation_add_tuple(employees, t1);
 
   Tuple *t2 = tuple_create();
@@ -71,7 +72,7 @@ int relational_example(void) {
   tuple_add_attribute(t2, attribute_create("name", ATTR_STRING, strdup("Bob")));
   double *salary2 = malloc(sizeof(double));
   *salary2 = 60000.0;
-  tuple_add_attribute(t2, attribute_create("salary", ATTR_DOUBLE, salary2));
+  tuple_add_attribute(t2, attribute_create("salary", ATTR_INT, salary2));
   relation_add_tuple(employees, t2);
 
   relation_print_with_cardinality(employees);
@@ -339,9 +340,9 @@ static void copy_attr_cb(void *attr_elem, void *copy_userdata) {
       value_copy = v;
       break;
     }
-    case ATTR_DOUBLE: {
-      double *v = malloc(sizeof(double));
-      *v = *(double *)attr->value;
+    case ATTR_RATIONAL: {
+      int *v = malloc(sizeof(int));
+      *v = *(int *)attr->value;
       value_copy = v;
       break;
     }
@@ -465,6 +466,28 @@ void mixed_join_example() {
 }
 
 /**
+ * Example usage demonstrating arithmetic relations in joins.
+ */
+void arithmetic_relations_example(void) {
+  printf("\n=== Arithmetic Relations Example ===\n\n");  
+  // Create addition relation
+  InfiniteRelation *add = create_addition_relation();  
+  printf("First 10 tuples of ADD = {(x, y, x+y) | x,y ∈ ℤ}:\n\n");
+  infinite_relation_print_prefix_with_cardinality(add, 10);  
+  // Create multiplication relation
+  InfiniteRelation *mul = create_multiplication_relation();  
+  printf("\nFirst 10 tuples of MUL = {(x, y, x*y) | x,y ∈ ℤ}:\n\n");
+  infinite_relation_print_prefix_with_cardinality(mul, 10);  
+  // Create division relation
+  InfiniteRelation *div = create_division_relation();  
+  printf("\nFirst 10 tuples of DIV = {(x, y, x/y) | x,y ∈ ℤ, y ≠ 0}:\n\n");
+  infinite_relation_print_prefix_with_cardinality(div, 10);
+  infinite_relation_destroy(add);
+  infinite_relation_destroy(mul);
+  infinite_relation_destroy(div);
+}
+
+/**
  * @brief Entry point for the relational algebra engine demo.
  *
  * Demonstrates creation of relations, tuples, and attributes, and prints results.
@@ -486,6 +509,7 @@ int main(void) {
   infinite_join_example_equality();
   infinite_join_example_less_than();
   mixed_join_example();
+  arithmetic_relations_example();
 
   return 0;
 }

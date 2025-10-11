@@ -32,9 +32,9 @@ static Attribute *attribute_copy(const Attribute *attr) {
       value_copy = v;
       break;
     }
-    case ATTR_DOUBLE: {
-      double *v = malloc(sizeof(double));
-      *v = *(double *)attr->value;
+    case ATTR_RATIONAL: {
+      int *v = malloc(sizeof(double));
+      *v = *(int *)attr->value;
       value_copy = v;
       break;
     }

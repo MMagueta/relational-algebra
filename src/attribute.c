@@ -6,6 +6,7 @@
  * used as the basic building blocks of tuples in the relational model.
  *
  */
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -53,8 +54,8 @@ void attribute_destroy(Attribute *attr) {
   }
   switch (attr->type) {
   case ATTR_INT:
-  case ATTR_DOUBLE:
-    free(attr->value); // value points to malloced int or double
+  case ATTR_RATIONAL:
+    free(attr->value); // value points to malloced int for now. change it to a string later
     break;
   case ATTR_STRING:
     free(attr->value); // value points to malloc'd string
@@ -82,8 +83,8 @@ void attribute_print(const Attribute *attr) {
   case ATTR_INT:
     printf("%d", *(int *)attr->value);
     break;
-  case ATTR_DOUBLE:
-    printf("%f", *(double *)attr->value);
+  case ATTR_RATIONAL:
+    printf("%d", *(int *)attr->value);
     break;
   case ATTR_STRING:
     printf("\"%s\"", (char *)attr->value);
