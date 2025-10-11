@@ -3,10 +3,10 @@ BIN := algebra-engine
 INCLUDE := -Iinclude
 
 all:
-	$(CC) $(SRCS) $(INCLUDE) -o $(BIN) && ./$(BIN)
+	$(CC) $(SRCS) $(INCLUDE) -lm -Wall -o $(BIN) && ./$(BIN)
 
 build:
-	$(CC) $(SRCS) $(INCLUDE) -o $(BIN)
+	$(CC) $(SRCS) $(INCLUDE) -lm -Wall -o $(BIN)
 
 format:
 	@find src include -name "*.c" -o -name "*.h" | \
