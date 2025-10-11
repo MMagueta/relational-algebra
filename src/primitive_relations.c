@@ -26,13 +26,14 @@ Tuple *natural_generator(size_t n, void *userdata) {
     return t;
 }
 
-/* Generator for integers Z */
 Tuple *integer_generator(size_t n, void *userdata) {
     (void)userdata; // to avoid annoying warning because I don't use it
     Tuple *t = tuple_create();
     int64_t *x = malloc(sizeof(int64_t));
+    int64_t *y = malloc(sizeof(int64_t));
     *x = (int64_t)n;
+    *y = (int64_t)-n;
     tuple_add_attribute(t, attribute_create("z", ATTR_INT, x));
+    tuple_add_attribute(t, attribute_create("z", ATTR_INT, y));
     return t;
 }
-
