@@ -19,9 +19,7 @@ Cardinality cardinality_infinite(CardinalityType type) {
   return c;
 }
 
-int cardinality_is_finite(Cardinality c) {
-  return c.type == CARD_FINITE;
-}
+int cardinality_is_finite(Cardinality c) { return c.type == CARD_FINITE; }
 
 int cardinality_is_infinite(Cardinality c) {
   return c.type != CARD_FINITE && c.type != CARD_UNKNOWN;
@@ -29,21 +27,21 @@ int cardinality_is_infinite(Cardinality c) {
 
 void cardinality_print(Cardinality c) {
   switch (c.type) {
-    case CARD_FINITE:
-      printf("|R| = %lu", (unsigned long)c.finite_count);
-      break;
-    case CARD_ALEPH_0:
-      printf("|R| = ℵ₀");
-      break;
-    case CARD_ALEPH_1:
-      printf("|R| = ℵ₁");
-      break;
-    case CARD_CONTINUUM:
-      printf("|R| = 2^ℵ₀");
-      break;
-    case CARD_UNKNOWN:
-      printf("|R| = ?");
-      break;
+  case CARD_FINITE:
+    printf("|R| = %lu", (unsigned long)c.finite_count);
+    break;
+  case CARD_ALEPH_0:
+    printf("|R| = ℵ₀");
+    break;
+  case CARD_ALEPH_1:
+    printf("|R| = ℵ₁");
+    break;
+  case CARD_CONTINUUM:
+    printf("|R| = 2^ℵ₀");
+    break;
+  case CARD_UNKNOWN:
+    printf("|R| = ?");
+    break;
   }
 }
 
@@ -60,11 +58,13 @@ Cardinality cardinality_product(Cardinality a, Cardinality b) {
 
   // If one finite (non-zero) and one infinite, result is infinite
   if (a.type == CARD_FINITE && b.type != CARD_FINITE) {
-    if (a.finite_count == 0) return cardinality_finite(0);
+    if (a.finite_count == 0)
+      return cardinality_finite(0);
     return cardinality_infinite(b.type);
   }
   if (b.type == CARD_FINITE && a.type != CARD_FINITE) {
-    if (b.finite_count == 0) return cardinality_finite(0);
+    if (b.finite_count == 0)
+      return cardinality_finite(0);
     return cardinality_infinite(a.type);
   }
 
@@ -72,4 +72,3 @@ Cardinality cardinality_product(Cardinality a, Cardinality b) {
   CardinalityType max_type = a.type > b.type ? a.type : b.type;
   return cardinality_infinite(max_type);
 }
-

@@ -14,32 +14,28 @@ typedef Tuple *(*TupleGeneratorFn)(size_t n, void *userdata);
  * InfiniteRelation is just a handle for a generator + metadata.
  */
 typedef struct {
-    const char *name;
-    TupleGeneratorFn gen_fn;
-    void *userdata;
-    Cardinality cardinality;
+  const char *name;
+  TupleGeneratorFn gen_fn;
+  void *userdata;
+  Cardinality cardinality;
 } InfiniteRelation;
 
 typedef struct {
-    InfiniteRelation *relation;
-    size_t current_index;
-    int exhausted;
+  InfiniteRelation *relation;
+  size_t current_index;
+  int exhausted;
 } InfiniteRelationIterator;
 
 /**
  * Create an infinite relation defined by a generator function.
  */
-InfiniteRelation *infinite_relation_create(const char *name,
-                                           TupleGeneratorFn fn,
-                                           void *userdata);
+InfiniteRelation *infinite_relation_create(const char *name, TupleGeneratorFn fn, void *userdata);
 
 /**
-* Create an infinite relation with explicit cardinality.
-*/
-InfiniteRelation *infinite_relation_create_with_cardinality(const char *name,
-                                                            TupleGeneratorFn fn,
-                                                            void *userdata,
-                                                            Cardinality card);
+ * Create an infinite relation with explicit cardinality.
+ */
+InfiniteRelation *infinite_relation_create_with_cardinality(const char *name, TupleGeneratorFn fn,
+                                                            void *userdata, Cardinality card);
 
 /**
  * Destroy an infinite relation handle (does not free generated tuples).
