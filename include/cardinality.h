@@ -11,11 +11,11 @@
  */
 
 typedef enum {
-  CARD_FINITE,      /** Finite cardinality */
-  CARD_ALEPH_0,     /** Countably infinite (ℵ₀) */
-  CARD_ALEPH_1,     /** First uncountable cardinal (ℵ₁) */
-  CARD_CONTINUUM,   /** Cardinality of the continuum (2^ℵ₀) */
-  CARD_UNKNOWN      /** Unknown cardinality */
+  CARD_FINITE,    /** Finite cardinality */
+  CARD_ALEPH_0,   /** Countably infinite (ℵ₀) */
+  CARD_ALEPH_1,   /** First uncountable cardinal (ℵ₁) */
+  CARD_CONTINUUM, /** Cardinality of the continuum (2^ℵ₀) */
+  CARD_UNKNOWN    /** Unknown cardinality */
 } CardinalityType;
 
 typedef struct {
@@ -50,7 +50,7 @@ void cardinality_print(Cardinality c);
 
 /**
  * @brief Compute the cardinality of a Cartesian product.
- * 
+ *
  * For finite × finite: multiply counts
  * For finite × infinite or infinite × finite: infinite (same type)
  * For infinite × infinite: infinite (max of the two types)

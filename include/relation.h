@@ -1,17 +1,15 @@
 #ifndef RELATION_H
 #define RELATION_H
 
+#include "cardinality.h"
 #include "set.h"
 #include "tuple.h"
-#include "cardinality.h"
 
 typedef struct {
   char *name;
   Set *tuples;
   Cardinality cardinality;
 } Relation;
-
-
 
 /**
  * @brief Project a relation onto a subset of attributes.
@@ -30,14 +28,14 @@ typedef struct {
  *   relation_destroy(proj);
  * @endcode
  */
-Relation *relation_project(const Relation *r, const char **attr_names, size_t num_attrs, const char *new_name);
+Relation *relation_project(const Relation *r, const char **attr_names, size_t num_attrs,
+                           const char *new_name);
 
 Relation *relation_create(const char *name);
 int relation_add_tuple(Relation *r, Tuple *t);
 void relation_destroy(Relation *r);
 void relation_print(const Relation *r);
 Tuple *relation_find_tuple(Relation *r, Tuple *t);
-
 
 Relation *relation_create_with_cardinality(const char *name, Cardinality card);
 void relation_print_with_cardinality(const Relation *r);

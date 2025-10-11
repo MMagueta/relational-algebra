@@ -126,8 +126,8 @@ static int attribute_equals(const Attribute *a, const Attribute *b) {
   switch (a->type) {
   case ATTR_INT:
     return *(int *)a->value == *(int *)b->value;
-  case ATTR_DOUBLE:
-    return *(double *)a->value == *(double *)b->value;
+  case ATTR_RATIONAL:
+    return *(int *)a->value == *(int *)b->value;
   case ATTR_STRING:
     return strcmp((char *)a->value, (char *)b->value) == 0;
   case ATTR_SET:
