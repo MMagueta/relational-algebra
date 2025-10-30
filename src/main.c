@@ -477,6 +477,8 @@ void arithmetic_relations_example(void) {
   infinite_relation_destroy(div);
 }
 
+#include "xml_server.h"
+
 /**
  * @brief Entry point for the relational algebra engine demo.
  *
@@ -484,7 +486,8 @@ void arithmetic_relations_example(void) {
  *
  * @return int Exit status code (0 for success).
  */
-int main(void) {
+int main(int argc, char *argv[]) {
+  /*
   relational_example();
   printf("\n");
   successor_relation_example();
@@ -500,6 +503,13 @@ int main(void) {
   infinite_join_example_less_than();
   mixed_join_example();
   arithmetic_relations_example();
+  */
+// Example main function
+  int port = 8080;
 
-  return 0;
+  /* if (argc > 1) { */
+    /* port = atoi(argv[1]); */
+  /* } */
+
+  return start_xml_server(port);
 }

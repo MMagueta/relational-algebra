@@ -51,6 +51,12 @@ The HTML output will be in =docs/doxygen/html/=. GitHub Actions will auto-deploy
 
 * Usage
 
+Tools for the environment:
+
+#+BEGIN_SRC shell
+nix shell nixpkgs#clang-tools nixpkgs#clang nixpkgs#gnumake
+#+END_SRC
+
 Compile and run the engine:
 
 #+BEGIN_SRC shell
